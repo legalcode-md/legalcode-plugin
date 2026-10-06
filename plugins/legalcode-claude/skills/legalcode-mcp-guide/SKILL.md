@@ -112,6 +112,19 @@ adopted-document identity. Count records, documents, events, assignments, ballot
 only with the measures and definitions advertised by the current analytics profile. Native ballot
 actions remain distinct, and overlapping groups need not add to a corpus total.
 
+For planned versus actual proceedings, retrieve both the agenda and the journal, then follow
+relevant event and relation context pages to the proceeding, speech, vote, and final document.
+An agenda stage shows a plan; a proceeding start, vote time, and final disposition are separate
+observations. Verify the source marker and timestamp for each assertion. Retrieve the vote's
+native ballot evidence when a roll call or outcome is required; a meeting summary alone does not
+establish it. Treat announced starts separately from supported actual opening and closing times.
+
+When Fetch returns a manifestation inventory handle, follow that exact handle and its continuation
+to select the required representation or acquisition revision. Continue its pagination independently
+of text and parent-context cursors. An archived acquisition is not proof of the publisher's complete
+revision history or original publication date. Source links, structured metadata, reduced extraction,
+and a complete stored XML body are different availability states; preserve the reported limits.
+
 For a last-three or last-four amendment request, establish the cutoff, qualifying amendment
 relationships, and exact versions. Adoption, publication, and commencement are different dates.
 Fetch the amendment evidence and relevant versions; latest consolidated text alone cannot
