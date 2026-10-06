@@ -3,7 +3,7 @@
 ## Final listing
 
 - Name: Legalcode
-- Version: 1.2.1
+- Version: 1.2.2
 - Subtitle: Legal research for business
 - Category: Business & Operations
 - Developer identity: verified Fordæmi ehf.
@@ -31,7 +31,7 @@ Starter prompts:
 
 Release notes:
 
-> Version 1.2.1 clarifies the legal research purpose and updates the listing category to Business & Operations. The six research tools and hosted MCP connection are unchanged.
+> Version 1.2.2 clarifies parliamentary agenda and journal evidence, scheduled versus actual times, vote and final-disposition evidence, and exact manifestation retrieval. The Business & Operations category, six research tools and hosted MCP connection are unchanged. Verify scoped coverage and availability through Discovery.
 
 Submission assets:
 
@@ -119,6 +119,16 @@ Before clicking Submit:
 7. Submit only after Scan Tools is clean.
 
 Publication and identity selection remain manual portal actions.
+
+## Version 1.2.2 package update
+
+Upload `dist/legalcode-openai-1.2.2.zip` to the existing Legalcode plugin after the
+scoped runtime release is verified. The package keeps the existing identity,
+Business & Operations category, MCP connection and six-tool schema. The shared
+OpenAI/Claude guide now explains agenda versus journal evidence, scheduled versus
+actual times, separate vote and disposition evidence, and exact manifestation
+pagination. Availability still depends on the connected source's Discovery profile.
+Package conformance does not establish completed history or deployed tool readiness.
 
 ## Version 1.2.1 package update
 

@@ -1,6 +1,6 @@
 {
   "name": "app-6a5fc36564608191827f4e7716bdaba0",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Legal research for business",
   "author": {
     "name": "Fordæmi ehf.",
@@ -100,7 +100,7 @@
         "commerce_description": "The plugin supports source research and does not sell products or process payments."
       },
       "publication": {
-        "release_notes": "Version 1.2.1 clarifies the business and professional legal research purpose and updates the listing category to Business & Operations. The six research tools and hosted MCP connection are unchanged."
+        "release_notes": "Version 1.2.2 clarifies parliamentary agenda and journal evidence, scheduled versus actual times, vote and final-disposition evidence, and exact manifestation retrieval. The Business & Operations category, six research tools and hosted MCP connection are unchanged. Verify scoped coverage and availability through Discovery."
       }
     }
   }

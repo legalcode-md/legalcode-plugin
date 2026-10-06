@@ -2,7 +2,7 @@
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "legalcode",
   "displayName": "Legalcode",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Research primary legal sources, patent publications and parliamentary records with exact identities, citations and source links.",
   "author": {
     "name": "Fordæmi ehf.",

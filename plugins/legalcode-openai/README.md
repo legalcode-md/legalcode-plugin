@@ -1,6 +1,6 @@
 # Legalcode for OpenAI
 
-Version 1.2.1 provides primary-source research through the hosted MCP connection
+Version 1.2.2 provides primary-source research through the hosted MCP connection
 https://mcp.legalcode.md/mcp and one included skill, `legalcode-mcp-guide`.
 
 The six tools are Discover, Search, Fetch, Patents, Analyze and Trace. Generic source discovery,
@@ -19,7 +19,7 @@ hook or custom interface. Authentication is managed by the client and hosted ser
 
 - Name: Legalcode
 - Package identity: app-6a5fc36564608191827f4e7716bdaba0
-- Version: 1.2.1
+- Version: 1.2.2
 - Developer: Fordæmi ehf.
 - Website: https://legalcode.md
 - Support: https://legalcode.md/contact
