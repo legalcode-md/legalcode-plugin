@@ -33,7 +33,5 @@ jobs:
           cache-dependency-path: requirements-dev.txt
       - name: Install validation dependencies
         run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
-      - name: Validate complete skill packages, provenance, and current tool contract
+      - name: Validate minimal guide package and current tool contract
         run: python scripts/validate_claude_package.py
-      - name: Exercise bundled DOCX and PPTX helpers
-        run: PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s plugins/legalcode-claude/skills/legalcode-document-to-skill/tests

@@ -13,8 +13,9 @@ https://mcp.legalcode.md/mcp
 
 The Claude package is [`plugins/legalcode-claude`](plugins/legalcode-claude), with its marketplace
 catalog in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json). It includes the
-Legalcode research guide, complete Document-to-skill and Tabulate workflows, and hosted MCP
-connection. It links to the [jurisdiction and task skill collection](https://github.com/legalcode-md/skills).
+Legalcode research guide and hosted MCP connection. Document-to-skill, Tabulate, and the
+[jurisdiction and task skill collection](https://github.com/legalcode-md/skills) are linked
+for separate installation.
 See [Claude submission details](docs/claude-submission.md) for the repository URL and plugin path.
 
 ```sh
@@ -66,9 +67,9 @@ skill inventories and tool contracts. Both retain the same hosted MCP connection
 
 ## Licenses
 
-Repository tooling and the MCP guide use MIT. The bundled Document-to-skill and Tabulate
-packages retain the Legalcode Skills Source-Available License 1.0, included in each skill
-and at the Claude plugin root. The repository MIT license does not relicense those packages.
+Repository tooling and the packaged MCP guide use MIT. Optional skills in the separate
+[Legalcode skill collection](https://github.com/legalcode-md/skills) retain their own licenses;
+they are not bundled or relicensed by this repository.
 
 Validate the Claude package with:
 

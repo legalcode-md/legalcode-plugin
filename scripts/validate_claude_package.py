@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Check Claude's complete skill inventory, provenance, references, and tool contract."""
+"""Check Claude's minimal MCP guide package, references, and tool contract."""
 
 from __future__ import annotations
 
-import hashlib
 import json
 import re
 import subprocess
@@ -13,7 +12,13 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = ROOT / "plugins/legalcode-claude"
-SKILLS = {"legalcode-mcp-guide", "legalcode-document-to-skill", "legalcode-tabulate"}
+SKILLS = {"legalcode-mcp-guide"}
+EXPECTED_FILES = {
+    ".claude-plugin/plugin.json", ".mcp.json", "README.md", "LICENSE",
+    "assets/legalcode-directory-256.png", "skills/legalcode-mcp-guide/LICENSE",
+    "skills/legalcode-mcp-guide/SKILL.md",
+    "skills/legalcode-mcp-guide/references/tool-examples.json",
+}
 TOOLS = {
     "legalcode_discover", "legalcode_search", "legalcode_fetch",
     "legalcode_patent_search", "legalcode_patent_fetch", "legalcode_analyze", "legalcode_trace",
@@ -46,7 +51,9 @@ def main() -> None:
         assert path.name not in {".DS_Store", "Thumbs.db", "desktop.ini", "__MACOSX", "__pycache__"}, path
         if path.is_file():
             assert path.stat().st_size < 256 * 1024, f"Oversized file: {path}"
-    assert sum(p.is_file() for p in PACKAGE.rglob("*")) <= 512
+    files = {str(p.relative_to(PACKAGE)) for p in PACKAGE.rglob("*") if p.is_file()}
+    assert files == EXPECTED_FILES, f"Unexpected package files: {files ^ EXPECTED_FILES}"
+    assert (PACKAGE / "LICENSE").read_bytes() == (skills_root / "legalcode-mcp-guide/LICENSE").read_bytes()
     for name in sorted(SKILLS):
         skill = skills_root / name
         text = (skill / "SKILL.md").read_text()
@@ -64,18 +71,6 @@ def main() -> None:
                 resolved = (path.parent / target).resolve()
                 assert resolved.is_relative_to(skill.resolve()) and resolved.exists(), (path, target)
         subprocess.run(["skills-ref", "validate", str(skill)], check=True)
-
-    provenance = json.loads((PACKAGE / "skills-provenance.json").read_text())
-    assert provenance["repository"] == "https://github.com/legalcode-md/skills"
-    assert re.fullmatch(r"[0-9a-f]{40}", provenance["commit"])
-    assert set(provenance["skills"]) == SKILLS - {"legalcode-mcp-guide"}
-    for name, entry in provenance["skills"].items():
-        directory = skills_root / name
-        files = {str(p.relative_to(directory)): p for p in directory.rglob("*") if p.is_file()}
-        assert set(files) == set(entry["files"]), f"Incomplete package: {name}"
-        for relative, path in files.items():
-            assert hashlib.sha256(path.read_bytes()).hexdigest() == entry["files"][relative], path
-        assert (directory / "LICENSE.md").read_bytes() == (PACKAGE / "LICENSE.md").read_bytes()
 
     guide = (skills_root / "legalcode-mcp-guide/SKILL.md").read_text()
     assert "legalcode_patents" not in guide, "Retired tool alias in Claude guide"
@@ -97,7 +92,7 @@ def main() -> None:
     assert entry["version"] == manifest["version"] and entry["source"] == "./plugins/legalcode-claude"
     mcp = json.loads((PACKAGE / ".mcp.json").read_text())
     assert mcp["mcpServers"]["legalcode"]["url"] == "https://mcp.legalcode.md/mcp"
-    print(f"Claude package passed: 3 complete skills, 7 tools, provenance {provenance['commit']}.")
+    print("Claude package passed: 1 MCP guide, 7 tools, 8 files, no executable helpers.")
 
 
 if __name__ == "__main__":

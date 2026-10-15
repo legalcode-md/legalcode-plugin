@@ -164,19 +164,20 @@ inside tool calls. In ordinary answers, use titles, legal citations, decision nu
 issuing bodies, dates, provision locators, and official URLs. Show raw machine vocabulary only when
 the user explicitly asks for technical or machine-readable output.
 
-## Bundled document workflows and the wider collection
+## Optional workflows from the wider collection
 
-- Use the bundled `legalcode-document-to-skill` when the user wants a reusable drafting skill
-  from example Word or PowerPoint documents. Read its entrypoint and supporting references;
-  preserve the approved design and keep private source documents out of shared packages.
-- Use the bundled `legalcode-tabulate` when the user wants a traceable workbook from supplied
-  documents. Read its entrypoint and runtime guidance; preserve per-cell source evidence,
-  uncertainty, and the distinction between extracted facts and assessment.
-- For additional jurisdiction, practice-area, or task workflows, consult the
-  [Legalcode skill collection](https://github.com/legalcode-md/skills),
+This plugin bundles only the MCP research guide. Additional workflows are available separately:
+
+- [Document-to-skill](https://github.com/legalcode-md/skills/tree/main/skills/general/drafting-documents/legalcode-document-to-skill)
+  builds a reusable drafting skill from example Word or PowerPoint documents.
+- [Tabulate](https://github.com/legalcode-md/skills/tree/main/skills/general/drafting-documents/legalcode-tabulate)
+  turns supplied documents into a traceable workbook with source evidence and visible uncertainty.
+- Browse the [Legalcode skill collection](https://github.com/legalcode-md/skills),
   [task and practice-area catalogue](https://github.com/legalcode-md/skills/blob/main/CATALOG.md),
   [general workflows](https://github.com/legalcode-md/skills/tree/main/skills/general), and
-  [jurisdiction workflows](https://github.com/legalcode-md/skills/tree/main/skills/jurisdictions).
-  Read the selected skill and its prerequisites before use. Collection links do not mean the
-  whole collection is installed. Install additional skills only when the user authorizes it.
-  A jurisdiction skill does not establish current source coverage; check Discover for the matter.
+  [jurisdiction workflows](https://github.com/legalcode-md/skills/tree/main/skills/jurisdictions)
+  for other tasks.
+
+These links do not install or load the linked skills. Read a selected skill's prerequisites and
+license, and install it only when the user authorizes it. A jurisdiction skill does not establish
+current source coverage; check Discover for the matter.
