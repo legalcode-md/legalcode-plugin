@@ -1,13 +1,13 @@
 {
   "name": "app-6a5fc36564608191827f4e7716bdaba0",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Legal research for business",
   "author": {
     "name": "Fordæmi ehf.",
     "url": "https://legalcode.md"
   },
   "homepage": "https://legalcode.md",
-  "repository": "https://github.com/RobertHH-IS/legalcode-plugin",
+  "repository": "https://github.com/legalcode-md/legalcode-plugin",
   "license": "MIT",
   "keywords": [
     "legal",
@@ -97,7 +97,8 @@
           ]
         },
         "commerce": false,
-        "commerce_description": "The plugin supports source research and does not sell products or process payments."
+        "commerce_description": "The plugin supports source research and does not sell products or process payments.",
+        "release_notes": "Version 1.2.3 updates the canonical repository to legalcode-md/legalcode-plugin. The research guide, six-tool submission contract, category and hosted MCP connection are unchanged."
       },
       "publication": {
         "release_notes": "Version 1.2.2 clarifies parliamentary agenda and journal evidence, scheduled versus actual times, vote and final-disposition evidence, and exact manifestation retrieval. The Business & Operations category, six research tools and hosted MCP connection are unchanged. Verify scoped coverage and availability through Discovery."

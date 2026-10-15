@@ -3,7 +3,7 @@
 ## Final listing
 
 - Name: Legalcode
-- Version: 1.2.2
+- Version: 1.2.3
 - Subtitle: Legal research for business
 - Category: Business & Operations
 - Developer identity: verified Fordæmi ehf.
@@ -16,7 +16,7 @@
 - MCP URL: https://mcp.legalcode.md/mcp
 - Commerce and purchasing: unchecked
 - Custom UI, screenshots, and CSP: none
-- Plugin repository: https://github.com/RobertHH-IS/legalcode-plugin
+- Plugin repository: https://github.com/legalcode-md/legalcode-plugin
 - Included skill: legalcode-mcp-guide
 
 Description:
@@ -31,7 +31,7 @@ Starter prompts:
 
 Release notes:
 
-> Version 1.2.2 clarifies parliamentary agenda and journal evidence, scheduled versus actual times, vote and final-disposition evidence, and exact manifestation retrieval. The Business & Operations category, six research tools and hosted MCP connection are unchanged. Verify scoped coverage and availability through Discovery.
+> Version 1.2.3 updates the canonical repository to legalcode-md/legalcode-plugin. The research guide, six-tool submission contract, category and hosted MCP connection are unchanged.
 
 Submission assets:
 
@@ -138,3 +138,8 @@ The ZIP preserves the MCP endpoint and imports updated listing metadata, one gui
 and three negative review cases. Customer support metadata is included. Existing country targeting
 and the saved demo URL are preserved by omission. This package does not bypass held MCP tool
 updates: inspect their findings, rescan or appeal through the separate MCP review panel.
+
+## Version 1.2.3 repository update
+
+The public repository is now https://github.com/legalcode-md/legalcode-plugin.
+Use `dist/legalcode-openai-1.2.3.zip` for the metadata update; the MCP connection and guide are unchanged.

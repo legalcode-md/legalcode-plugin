@@ -36,7 +36,7 @@ Read each skill's prerequisites and license before installing or redistributing 
 In Claude Code:
 
 ```text
-/plugin install legalcode --marketplace RobertHH-IS/legalcode-plugin
+/plugin install legalcode --marketplace legalcode-md/legalcode-plugin
 ```
 
 In Claude and Cowork, add this repository as a marketplace from Customize > Plugins, then

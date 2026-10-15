@@ -10,7 +10,7 @@
     {
       "name": "legalcode",
       "description": "Primary-source legal research, document-to-skill authoring, and traceable document tabulation.",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "author": {
         "name": "Fordæmi ehf.",
         "url": "https://legalcode.md"

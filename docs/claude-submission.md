@@ -1,14 +1,14 @@
 # Claude Plugin Directory submission
 
-Updated 2026-10-15 for Claude package **1.3.0**.
+Updated 2026-10-15 for Claude package **1.3.1**.
 
 ## Source step
 
 - Portal: https://claude.ai/directory/manage/new/plugin
-- Repository: `https://github.com/RobertHH-IS/legalcode-plugin`
+- Repository: `https://github.com/legalcode-md/legalcode-plugin`
 - Plugin path: `plugins/legalcode-claude`
 - Branch: `main` (the default branch)
-- Direct folder link: https://github.com/RobertHH-IS/legalcode-plugin/tree/main/plugins/legalcode-claude
+- Direct folder link: https://github.com/legalcode-md/legalcode-plugin/tree/main/plugins/legalcode-claude
 
 The portal accepts the direct folder link and fills the path and branch. Select **Validate**
 and resolve blocking findings before continuing. A local validation pass does not establish
