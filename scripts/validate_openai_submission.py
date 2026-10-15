@@ -343,20 +343,14 @@ def validate_local_marketplace(failures: list[str]) -> None:
     )
 
 
-def validate_shared_guide(failures: list[str]) -> None:
+def validate_claude_connection(failures: list[str]) -> None:
     claude_root = REPO_ROOT / "plugins" / "legalcode-claude"
-    openai_manifest = load_json(PACKAGE_ROOT / ".codex-plugin" / "plugin.json")
     claude_manifest = load_json(claude_root / ".claude-plugin" / "plugin.json")
     require(claude_manifest.get("name") == "legalcode",
             "Claude must retain its own legalcode plugin identity", failures)
-    require(claude_manifest.get("version") == openai_manifest.get("version"),
-            "Claude and OpenAI package versions must match", failures)
     require(load_json(claude_root / ".mcp.json") == load_json(PACKAGE_ROOT / ".mcp.json"),
             "Both packages must retain the same hosted MCP connection", failures)
-    for relative in ("SKILL.md", "references/tool-examples.json"):
-        require((claude_root / "skills" / SKILL_NAME / relative).read_bytes()
-                == (PACKAGE_ROOT / "skills" / SKILL_NAME / relative).read_bytes(),
-                f"Shared MCP guide drifted between packages: {relative}", failures)
+    # Provider packages release independently; validate each guide against its own tool contract.
     marketplace = load_json(REPO_ROOT / ".claude-plugin" / "marketplace.json")
     entries = [entry for entry in marketplace.get("plugins", [])
                if entry.get("name") == claude_manifest["name"]]
@@ -574,7 +568,7 @@ def main() -> int:
     try:
         skill_root = validate_package(failures)
         validate_local_marketplace(failures)
-        validate_shared_guide(failures)
+        validate_claude_connection(failures)
         validate_routing(failures)
         validate_submission_worksheet(failures)
         validate_reader_facing_docs(failures)

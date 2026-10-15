@@ -2,7 +2,7 @@
 
 This repository contains separate submission packages for Legalcode on OpenAI and Claude.
 
-Legalcode gives OpenAI products authenticated access to primary legal sources through the hosted
+Legalcode gives AI assistants authenticated access to primary legal sources through the hosted
 MCP endpoint:
 
 ```text
@@ -13,7 +13,9 @@ https://mcp.legalcode.md/mcp
 
 The Claude package is [`plugins/legalcode-claude`](plugins/legalcode-claude), with its marketplace
 catalog in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json). It includes the
-Legalcode research guide and hosted MCP connection. See [Claude submission details](docs/claude-submission.md).
+Legalcode research guide, complete Document-to-skill and Tabulate workflows, and hosted MCP
+connection. It links to the [jurisdiction and task skill collection](https://github.com/legalcode-md/skills).
+See [Claude submission details](docs/claude-submission.md) for the repository URL and plugin path.
 
 ```sh
 claude plugin validate plugins/legalcode-claude --strict
@@ -59,5 +61,18 @@ uv run --python 3.13 --with-requirements requirements-dev.txt \
 The archive, checksum and validation report are written under `dist/`. Upload the archive to the
 existing Legalcode plugin. Hosted MCP tool approval is handled separately from package uploads.
 The GitHub Actions conformance workflow builds the same package and saves it as the
-`legalcode-openai-upload` artifact. OpenAI and Claude packages share the same guide and examples;
-validation rejects version, connection or guide drift between them.
+`legalcode-openai-upload` artifact. Claude and OpenAI release independently and validate their own
+skill inventories and tool contracts. Both retain the same hosted MCP connection.
+
+## Licenses
+
+Repository tooling and the MCP guide use MIT. The bundled Document-to-skill and Tabulate
+packages retain the Legalcode Skills Source-Available License 1.0, included in each skill
+and at the Claude plugin root. The repository MIT license does not relicense those packages.
+
+Validate the Claude package with:
+
+```sh
+uv run --python 3.13 --with-requirements requirements-dev.txt \
+  python scripts/validate_claude_package.py
+```

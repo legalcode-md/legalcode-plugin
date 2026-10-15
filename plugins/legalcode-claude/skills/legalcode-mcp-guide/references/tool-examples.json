@@ -115,9 +115,8 @@
     },
     {
       "name": "patent_exact_search",
-      "tool": "legalcode_patents",
+      "tool": "legalcode_patent_search",
       "input": {
-        "action": "search",
         "jurisdiction": "EP",
         "patentId": "EP4811984A1",
         "page": {
@@ -127,20 +126,18 @@
     },
     {
       "name": "patent_metadata",
-      "tool": "legalcode_patents",
+      "tool": "legalcode_patent_fetch",
       "binding": "This publication handle was returned by a live patent Search; use the handle from the current Search.",
       "input": {
-        "action": "fetch",
         "sourceRef": "patent/EP/EP4811984A1",
         "mode": "metadata"
       }
     },
     {
       "name": "patent_text",
-      "tool": "legalcode_patents",
+      "tool": "legalcode_patent_fetch",
       "binding": "Use the exact publication handle returned by Search; available text is not guaranteed.",
       "input": {
-        "action": "fetch",
         "sourceRef": "patent/EP/EP4811984A1",
         "mode": "full",
         "maxChars": 4000

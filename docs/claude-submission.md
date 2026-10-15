@@ -1,53 +1,62 @@
 # Claude Plugin Directory submission
 
-Prepared on 2026-09-11. Submission requires an authenticated Claude Console session.
+Updated 2026-10-15 for Claude package **1.3.0**.
 
-## Submission route
+## Source step
 
-- Console: https://platform.claude.com/plugins/submit
-- Team/Enterprise organization: https://claude.ai/admin-settings/directory/submissions/plugins/new
-- Official requirements: https://claude.com/docs/plugins/submit
+- Portal: https://claude.ai/directory/manage/new/plugin
+- Repository: `https://github.com/RobertHH-IS/legalcode-plugin`
+- Plugin path: `plugins/legalcode-claude`
+- Branch: `main` (the default branch)
+- Direct folder link: https://github.com/RobertHH-IS/legalcode-plugin/tree/main/plugins/legalcode-claude
 
-Console requires a Developer, Admin, or Owner role. The Claude.ai route requires directory management access. The public plugin repository must pass `claude plugin validate`. This application is for the Plugin Directory; MCP connector listings have a separate submission process.
+The portal accepts the direct folder link and fills the path and branch. Select **Validate**
+and resolve blocking findings before continuing. A local validation pass does not establish
+portal acceptance. The directory tracks new commits on the selected branch and scans updates.
+Existing submissions and reviewer feedback are available at https://claude.ai/directory/manage.
+
+Official instructions: https://claude.com/docs/plugins/submit and
+https://claude.com/docs/plugins/pre-submission-checklist.
 
 ## Listing copy
 
 - Display name: Legalcode
 - Publisher: Fordæmi ehf.
-- Repository: https://github.com/RobertHH-IS/legalcode-plugin
-- Plugin directory: https://github.com/RobertHH-IS/legalcode-plugin/tree/main/plugins/legalcode-claude
-- Plugin path: `plugins/legalcode-claude`
 - Website: https://legalcode.md
 - Support: https://legalcode.md/contact
 - Privacy: https://legalcode.md/privacy
 - Terms: https://legalcode.md/terms
-- Short description: Primary-source legal research
+- Short description: Legal research, reusable drafting skills, and traceable document tables.
 
-Description:
+Legalcode connects Claude to primary legal materials through an authenticated, read-only MCP
+server. The included guide coordinates seven research tools and keeps conclusions tied to
+verified source text, citations, and official links. Document-to-skill turns Word and PowerPoint
+examples into reusable drafting skills while preserving house style. Tabulate turns document
+collections into traceable Excel workbooks with summaries and visible uncertainty. The package
+links to the wider Legalcode collection of jurisdiction, practice-area, and task skills.
 
-Legalcode connects Claude to primary legal materials through an authenticated, read-only MCP server. Search legal sources, retrieve source metadata and excerpts, analyze aggregate patterns, and trace relationships among laws, decisions, citations, and legislative history. The included research guide helps Claude combine these capabilities and keep conclusions tied to verifiable sources.
+## Data handling and reviewer setup
 
-## Reviewer setup
+The plugin README describes the connector's outbound data, EPO patent access, local document
+helpers, optional runtime setup, and the distinction between Claude's document handling and
+Legalcode queries. Use that disclosure when completing the portal's data-handling step.
+Complete client-managed authentication at `https://mcp.legalcode.md/mcp` using a Legalcode account.
+Provide reviewer credentials only in private submission fields.
 
-The bundled remote MCP endpoint is `https://mcp.legalcode.md/mcp`. Complete the client-managed authentication flow with a Legalcode account. Provide any reviewer credentials only through private submission fields, never in this repository.
-
-Example prompts:
-
-1. Show which Icelandic legal sources are available and what I can ask about them.
-2. Research an Icelandic legal issue using current legislation and case law.
-3. Find EU legislation and decisions, then trace national implementation measures.
-
-## Validation
+## Validation and maintenance
 
 ```sh
-claude plugin validate plugins/legalcode-claude
-claude plugin validate .claude-plugin/marketplace.json
+claude plugin validate plugins/legalcode-claude --strict
+claude plugin validate .claude-plugin/marketplace.json --strict
+uv run --python 3.13 --with-requirements requirements-dev.txt python scripts/validate_claude_package.py
 ```
 
-The OpenAI submission files are separate from this Claude package. Submission and acceptance must be confirmed in the authenticated portal; repository validation alone does not establish either.
+The Claude and OpenAI packages release independently. The Claude guide follows the current
+seven-tool endpoint; the submitted OpenAI package retains its existing six-tool guide until
+its separate update. Each package's tests enforce its own inventory and guide contract.
+The hosted endpoint is shared. Do not use the retired CLI repository as this submission's source.
 
-## Version 1.2.0 update
-
-The Claude guide and call examples now match the OpenAI package and all six MCP tools.
-Patents uses the dedicated live EPO tool; parliamentary workflows preserve exact entries,
-versions, temporal bounds and count semantics. The hosted endpoint and authentication are unchanged.
+When refreshing bundled workflow skills, copy complete committed packages from
+https://github.com/legalcode-md/skills, verify each file against that commit's catalog.json,
+and update skills-provenance.json. Retain each package's license and rerun validation.
+Do not copy unrelated, uncommitted work from the skills checkout into a release.

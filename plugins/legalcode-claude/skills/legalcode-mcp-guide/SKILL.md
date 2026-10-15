@@ -1,7 +1,7 @@
 ---
 name: legalcode-mcp-guide
 description: >
-  Coordinate Legalcode's Discover, Search, Fetch, Patents, Analyze, and Trace tools for
+  Coordinate Legalcode's Discover, Search, Fetch, Patent Search, Patent Fetch, Analyze, and Trace tools for
   primary-source research. Use for capability questions, current source
   discovery, multi-tool research, aggregate analysis, relationship tracing,
   verified source text, or recovery from a rejected Legalcode call. Not for
@@ -21,7 +21,8 @@ handoffs that individual tool descriptions cannot express.
 | `legalcode_discover` | Learn the current shape of a jurisdiction and source family | searchable and filterable fields, facets, source codes, sorts, analytics readiness, and relationship coverage |
 | `legalcode_search` | Find and rank candidate records | `sourceRef`, citation metadata, official URLs, snippets, and sometimes `downloadUrl` |
 | `legalcode_fetch` | Verify one known record or provision | source metadata and the text needed to support a conclusion |
-| `legalcode_patents` | Search live patent publications or retrieve one exact publication | patent metadata, publication identifiers, source links, and available text |
+| `legalcode_patent_search` | Search live EPO patent publications | patent metadata, publication identifiers, source links, and exact `sourceRef` handles |
+| `legalcode_patent_fetch` | Retrieve one exact patent publication | source metadata and available claims or description text |
 | `legalcode_analyze` | Count or group a defined indexed cohort | buckets, measures, and document handles when that profile permits them |
 | `legalcode_trace` | Follow a persisted legal relationship | related-record handles and, for legislative history, flow handles |
 
@@ -41,7 +42,7 @@ within the same scope. Fetching a returned `sourceRef` and continuing a cursor-p
 need another discovery step.
 
 Patents use their own tool schema. They are not a Discovery source family and are not accepted by
-generic Search or Fetch. Call `legalcode_patents` directly for patent research.
+generic Search or Fetch. Use `legalcode_patent_search` and `legalcode_patent_fetch` directly for patent research.
 If that tool or a described parameter is absent from the connected schema, report the capability
 as unavailable in this connection. Package instructions cannot enable an unapproved tool update.
 
@@ -77,14 +78,14 @@ silently dropping it and broadening the question.
 
 ## Patent publications
 
-Use `legalcode_patents` with `action:"search"` and an explicit `jurisdiction`. Use `patentId`
+Use `legalcode_patent_search` with an explicit `jurisdiction`. Use `patentId`
 for an exact publication, including its kind code, or supported applicant, inventor, office, and
 publication-date constraints for a defined search. Each page returns at most 20 results; only the
 first 2,000 provider results can be paged. Continue using the returned cursor and preserve every
 search constraint. An unsupported jurisdiction needs an explicit supported office; never broaden
 it silently to all offices.
 
-Copy the returned patent `sourceRef` exactly into the same tool with `action:"fetch"`.
+Copy the returned patent `sourceRef` exactly into `legalcode_patent_fetch`. Neither patent tool accepts an `action` dispatcher.
 Metadata, excerpt, and full modes describe the requested retrieval; follow text continuations
 without changing the publication or mode. Search-only inputs do not belong in a Fetch request.
 Available metadata or a publisher link does not prove that description or claims text was
@@ -162,3 +163,20 @@ Keep `sourceRef`, `lawKey`, `flowKey`, `sourceCode`, relationship names, metric 
 inside tool calls. In ordinary answers, use titles, legal citations, decision numbers, courts or
 issuing bodies, dates, provision locators, and official URLs. Show raw machine vocabulary only when
 the user explicitly asks for technical or machine-readable output.
+
+## Bundled document workflows and the wider collection
+
+- Use the bundled `legalcode-document-to-skill` when the user wants a reusable drafting skill
+  from example Word or PowerPoint documents. Read its entrypoint and supporting references;
+  preserve the approved design and keep private source documents out of shared packages.
+- Use the bundled `legalcode-tabulate` when the user wants a traceable workbook from supplied
+  documents. Read its entrypoint and runtime guidance; preserve per-cell source evidence,
+  uncertainty, and the distinction between extracted facts and assessment.
+- For additional jurisdiction, practice-area, or task workflows, consult the
+  [Legalcode skill collection](https://github.com/legalcode-md/skills),
+  [task and practice-area catalogue](https://github.com/legalcode-md/skills/blob/main/CATALOG.md),
+  [general workflows](https://github.com/legalcode-md/skills/tree/main/skills/general), and
+  [jurisdiction workflows](https://github.com/legalcode-md/skills/tree/main/skills/jurisdictions).
+  Read the selected skill and its prerequisites before use. Collection links do not mean the
+  whole collection is installed. Install additional skills only when the user authorizes it.
+  A jurisdiction skill does not establish current source coverage; check Discover for the matter.
