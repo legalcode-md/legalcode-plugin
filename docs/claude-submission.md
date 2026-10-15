@@ -1,6 +1,6 @@
 # Claude Plugin Directory submission
 
-Updated 2026-10-15 for Claude package **1.3.1**.
+Updated 2026-10-15 for Claude package **1.3.2**.
 
 ## Source step
 

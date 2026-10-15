@@ -90,6 +90,7 @@ def main() -> None:
         assert "skills/jurisdictions" in text and "CATALOG.md" in text
     manifest = json.loads((PACKAGE / ".claude-plugin/plugin.json").read_text())
     assert (PACKAGE / manifest["icon"]).is_file()
+    assert manifest["privacyPolicyUrl"] == "https://legalcode.md/privacy"
     assert "https://legalcode.md/privacy" in (PACKAGE / "README.md").read_text()
     marketplace = json.loads((ROOT / ".claude-plugin/marketplace.json").read_text())
     entry = next(p for p in marketplace["plugins"] if p["name"] == manifest["name"])
