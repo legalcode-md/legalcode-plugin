@@ -1,0 +1,186 @@
+{
+  "validation_scope": "Input-schema examples; source readiness and results require separate live verification. Binding markers must be replaced before execution.",
+  "examples": [
+    {
+      "name": "discover_law",
+      "tool": "legalcode_discover",
+      "input": {
+        "mode": "source_profile",
+        "jurisdiction": "EU",
+        "sourceType": "law"
+      }
+    },
+    {
+      "name": "discover_althingi_entries",
+      "tool": "legalcode_discover",
+      "input": {
+        "mode": "source_profile",
+        "jurisdiction": "IS",
+        "sourceType": "public_record",
+        "sourceCode": "IS_ALTHINGI",
+        "legislativeSession": "155",
+        "resultLevel": "participant"
+      }
+    },
+    {
+      "name": "search_exact_law",
+      "tool": "legalcode_search",
+      "input": {
+        "jurisdiction": "EU",
+        "sourceTypes": [
+          "law"
+        ],
+        "mode": "exact",
+        "q": "32016R0679",
+        "page": {
+          "limit": 5
+        }
+      }
+    },
+    {
+      "name": "search_althingi_events",
+      "tool": "legalcode_search",
+      "input": {
+        "jurisdiction": "IS",
+        "sourceTypes": [
+          "public_record"
+        ],
+        "resultLevel": "event",
+        "filters": [
+          {
+            "field": "sourceCode",
+            "op": "eq",
+            "value": "IS_ALTHINGI"
+          },
+          {
+            "field": "legislativeSession",
+            "op": "eq",
+            "value": "155"
+          }
+        ],
+        "page": {
+          "limit": 20
+        }
+      }
+    },
+    {
+      "name": "search_althingi_participation",
+      "tool": "legalcode_search",
+      "input": {
+        "jurisdiction": "IS",
+        "sourceTypes": [
+          "public_record"
+        ],
+        "resultLevel": "participant",
+        "filters": [
+          {
+            "field": "sourceCode",
+            "op": "eq",
+            "value": "IS_ALTHINGI"
+          },
+          {
+            "field": "legislativeSession",
+            "op": "eq",
+            "value": "155"
+          }
+        ],
+        "page": {
+          "limit": 20
+        }
+      }
+    },
+    {
+      "name": "fetch_provision",
+      "tool": "legalcode_fetch",
+      "binding": "Replace sourceRef with the exact non-patent handle returned by Search.",
+      "input": {
+        "sourceRef": "RETURNED_SOURCE_REF",
+        "mode": "excerpt",
+        "sectionRef": "Article 22",
+        "maxChars": 4000
+      }
+    },
+    {
+      "name": "fetch_parent_participation",
+      "tool": "legalcode_fetch",
+      "binding": "Replace sourceRef with the exact parent handle returned by Search.",
+      "input": {
+        "sourceRef": "RETURNED_PARENT_SOURCE_REF",
+        "mode": "metadata",
+        "publicRecordContext": {
+          "kind": "participants",
+          "limit": 20
+        }
+      }
+    },
+    {
+      "name": "patent_exact_search",
+      "tool": "legalcode_patent_search",
+      "input": {
+        "jurisdiction": "EP",
+        "patentId": "EP4811984A1",
+        "page": {
+          "limit": 5
+        }
+      }
+    },
+    {
+      "name": "patent_metadata",
+      "tool": "legalcode_patent_fetch",
+      "binding": "This publication handle was returned by a live patent Search; use the handle from the current Search.",
+      "input": {
+        "sourceRef": "patent/EP/EP4811984A1",
+        "mode": "metadata"
+      }
+    },
+    {
+      "name": "patent_text",
+      "tool": "legalcode_patent_fetch",
+      "binding": "Use the exact publication handle returned by Search; available text is not guaranteed.",
+      "input": {
+        "sourceRef": "patent/EP/EP4811984A1",
+        "mode": "full",
+        "maxChars": 4000
+      }
+    },
+    {
+      "name": "analyze_event_count",
+      "tool": "legalcode_analyze",
+      "readiness": "Execute only if the scoped source profile advertises this measure and level.",
+      "input": {
+        "jurisdiction": "IS",
+        "sourceType": "public_record",
+        "resultLevel": "event",
+        "filters": [
+          {
+            "field": "sourceCode",
+            "op": "eq",
+            "value": "IS_ALTHINGI"
+          },
+          {
+            "field": "legislativeSession",
+            "op": "eq",
+            "value": "155"
+          }
+        ],
+        "analysis": {
+          "type": "aggregate",
+          "measures": [
+            "event_count"
+          ],
+          "sampleLimit": 0
+        }
+      }
+    },
+    {
+      "name": "trace_original_bill",
+      "tool": "legalcode_trace",
+      "input": {
+        "relationship": "pre_law_for_law",
+        "jurisdiction": "IS",
+        "relatedNumberYear": "90/2018",
+        "limit": 10
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+name: Copilot Cowork plugin conformance
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "plugins/legalcode-copilot/**"
+      - "plugins/legalcode-claude/skills/**"
+      - "scripts/build_copilot_package.py"
+      - "scripts/validate_claude_package.py"
+      - "requirements-copilot.txt"
+      - "requirements-dev.txt"
+      - ".github/workflows/copilot-plugin-conformance.yml"
+  pull_request:
+    paths:
+      - "plugins/legalcode-copilot/**"
+      - "plugins/legalcode-claude/skills/**"
+      - "scripts/build_copilot_package.py"
+      - "scripts/validate_claude_package.py"
+      - "requirements-copilot.txt"
+      - "requirements-dev.txt"
+      - ".github/workflows/copilot-plugin-conformance.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: |
+            requirements-dev.txt
+            requirements-copilot.txt
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-copilot.txt
+      - name: Validate and build Cowork package
+        run: python scripts/build_copilot_package.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: legalcode-copilot-upload
+          path: |
+            dist/legalcode-copilot-*.zip
+            dist/legalcode-copilot-*.sha256
+            dist/legalcode-copilot-*.validation.json
+          if-no-files-found: error

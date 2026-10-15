@@ -1,6 +1,6 @@
 # Legalcode Plugins
 
-This repository contains separate submission packages for Legalcode on OpenAI and Claude.
+This repository contains separate packages for Legalcode on OpenAI, Claude, and Microsoft 365 Copilot Cowork.
 
 Legalcode gives AI assistants authenticated access to primary legal sources through the hosted
 MCP endpoint:
@@ -39,6 +39,25 @@ The hosted MCP connection is declared in the package's `.mcp.json` and entered a
 submission portal. Reviewer credentials remain only in the portal's private fields.
 [`chatgpt-app-submission.json`](chatgpt-app-submission.json) is the checked-in worksheet for the
 listing, tool annotations, and submission test cases.
+
+## Microsoft 365 Copilot Cowork
+
+The Cowork package is [`plugins/legalcode-copilot`](plugins/legalcode-copilot). It uses the
+Microsoft 365 manifest 1.29 format, one hosted MCP connector, and the same research guide as
+Claude. Optional document, jurisdiction, and task skills are linked separately.
+
+```sh
+uv run --python 3.13 --with-requirements requirements-copilot.txt \
+  python scripts/build_copilot_package.py
+```
+
+The build creates an upload ZIP, checksum, and validation report under `dist/`. GitHub Actions
+also saves these as the `legalcode-copilot-upload` artifact. See the
+[installation guide](plugins/legalcode-copilot/README.md) and
+[package/reviewer details](docs/copilot-submission.md).
+
+Authentication uses Cowork's dynamic OAuth registration. Regular Copilot Chat requires a separate
+Microsoft OAuth vault registration and agent configuration; this package targets Cowork.
 
 ## Validate
 

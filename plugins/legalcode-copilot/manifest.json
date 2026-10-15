@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.29/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.29",
+  "version": "1.0.0",
+  "id": "4d9bbf6d-eefd-474f-b001-5751d7bd8e42",
+  "developer": {
+    "name": "Fordæmi ehf.",
+    "websiteUrl": "https://legalcode.md",
+    "privacyUrl": "https://legalcode.md/privacy",
+    "termsOfUseUrl": "https://legalcode.md/terms"
+  },
+  "name": {
+    "short": "Legalcode",
+    "full": "Legalcode for Copilot Cowork"
+  },
+  "description": {
+    "short": "Primary-source legal research with verifiable citations.",
+    "full": "Research legislation, court decisions, regulatory materials, agreements, legislative history, and patents through Legalcode. The included research guide helps Copilot Cowork discover current source coverage, retrieve authorities, verify source text, and present citations with official links. Connect with your Legalcode account. Coverage and access depend on jurisdiction, source, and account. Additional document, jurisdiction, and task skills are available separately from the Legalcode skill collection."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#000000",
+  "agentSkills": [
+    {
+      "folder": "./skills/legalcode-mcp-guide"
+    }
+  ],
+  "agentConnectors": [
+    {
+      "id": "legalcode",
+      "displayName": "Legalcode",
+      "description": "Authenticated access to primary legal sources, patents, aggregate analysis, and legal relationships.",
+      "toolSource": {
+        "remoteMcpServer": {
+          "mcpServerUrl": "https://mcp.legalcode.md/mcp"
+        }
+      }
+    }
+  ]
+}
